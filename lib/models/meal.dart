@@ -20,17 +20,17 @@ class Meal {
   final bool isLactoseFree;
 
   const Meal(
-      {required this.id,
-      required this.categories,
-      required this.affordability,
-      required this.complexity,
-      required this.title,
-      required this.duration,
-      required this.imageUrl,
-      required this.ingredients,
-      required this.isGlutenFree,
-      required this.isLactoseFree,
-      required this.isVegan,
-      required this.isVegetarian,
-      required this.steps});
+      {@required this.id,
+      @required this.categories,
+      @required this.affordability,
+      @required this.complexity,
+      @required this.title,
+      @required this.duration,
+      @required this.imageUrl,
+      @required this.ingredients,
+      @required this.isGlutenFree,
+      @required this.isLactoseFree,
+      @required this.isVegan,
+      @required this.isVegetarian,
+      @required this.steps});
 }

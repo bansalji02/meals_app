@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/dummy_data.dart';
-import 'package:meals_app/models/meal.dart';
+
 import 'package:meals_app/widgets/meal_item.dart';
 
 class CategoryMealsScreen extends StatelessWidget {
@@ -12,19 +12,26 @@ class CategoryMealsScreen extends StatelessWidget {
   //making the routeName variable to use in the main dart file
   static const routeName = '/category-meals-screen';
 
+  //creating a constructor so that i can recieve category meals from main dart file
+  final List availableMeals;
+  //this available meal will go in fetching filtered meals
+
+  CategoryMealsScreen(this.availableMeals);
+
   @override
   Widget build(BuildContext context) {
     final routeArgs =
-        ModalRoute.of(context)!.settings.arguments as Map<String, String>;
+        ModalRoute.of(context).settings.arguments as Map<String, String>;
     final categoryTitle = routeArgs['title'];
     final categoryId = routeArgs['id'];
-    final filteredCategoryMeals = DUMMY_MEALS.where((element) {
+    final filteredCategoryMeals = availableMeals.where((element) {
       return element.categories.contains(categoryId);
     }).toList();
 
     return Scaffold(
         appBar: AppBar(
-          title: Text(categoryTitle!),
+          title: Text(categoryTitle),
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         ),
         body: ListView.builder(
           itemBuilder: (ctx, index) {

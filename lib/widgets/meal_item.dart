@@ -12,12 +12,12 @@ class MealItem extends StatelessWidget {
   final Affordability affordability;
 
   const MealItem(
-      {required this.id,
-      required this.affordability,
-      required this.complexity,
-      required this.title,
-      required this.imageUrl,
-      required this.duration});
+      {@required this.id,
+      @required this.affordability,
+      @required this.complexity,
+      @required this.title,
+      @required this.imageUrl,
+      @required this.duration});
 
   //we have the values of complexity and affordability as enums which we cant put inside the text as string so we have to use a getter to convert them into string
   String get complexityText {

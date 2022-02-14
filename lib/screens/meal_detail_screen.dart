@@ -45,7 +45,7 @@ class MealDetailScreen extends StatelessWidget {
 
     //getting the arguments
     final routeArgs =
-        ModalRoute.of(context)!.settings.arguments as Map<String, String>;
+        ModalRoute.of(context).settings.arguments as Map<String, String>;
     final mealId = routeArgs['id'];
     final mealtitle = routeArgs['title'];
 
