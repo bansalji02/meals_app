@@ -30,7 +30,10 @@ class _MyAppState extends State<MyApp> {
   };
 
   //Making a new list of available meals to apply filteres on
-  List<Meal> _availableMeals;
+  List<Meal> _availableMeals = DUMMY_MEALS;
+
+  //making a new list of favourite meals
+  List<Meal> _favouriteMeals = [];
 
   void _setFilters(Map<String, bool> filtersData) {
     setState(() {
@@ -58,6 +61,27 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  //creating a toggle method to mark a recipe as favorite
+  void toggleFavorite(String mealId) {
+    final existingIndex =
+        _favouriteMeals.indexWhere((element) => element.id == mealId);
+
+    if (existingIndex >= 0) {
+      setState(() {
+        _favouriteMeals.removeAt(existingIndex);
+      });
+    } else {
+      setState(() {
+        _favouriteMeals
+            .add(DUMMY_MEALS.firstWhere((element) => element.id == mealId));
+      });
+    }
+  }
+
+  bool _isFavoriteMeal(String mealId) {
+    return _favouriteMeals.any((element) => mealId == element.id);
+  }
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -83,10 +107,11 @@ class _MyAppState extends State<MyApp> {
       //home: BottomTabsScreen(),
       routes: {
         //instead of changing the home option in main dart file we can change the bootup screen using a default root routes tab as
-        '/': (ctx) => BottomTabsScreen(),
+        '/': (ctx) => BottomTabsScreen(_favouriteMeals),
         CategoryMealsScreen.routeName: (ctx) =>
             CategoryMealsScreen(_availableMeals),
-        MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
+        MealDetailScreen.routeName: (ctx) =>
+            MealDetailScreen(toggleFavorite, _isFavoriteMeal),
         SettingsScreen.routeName: (context) => SettingsScreen(_filters,
             _setFilters), //the first parameter we are passing is currentfilter to show the changed value in filter screen
       },

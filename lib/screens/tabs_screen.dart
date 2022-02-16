@@ -12,23 +12,24 @@ class TabsScreen extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Deli Meals'),
-          bottom: const TabBar(
-            tabs: const [
-              Tab(
-                icon: Icon(Icons.category),
-                text: 'Categories',
-              ),
-              Tab(
-                icon: Icon(Icons.star),
-                text: 'Favorites',
-              )
-            ],
+          appBar: AppBar(
+            title: const Text('Deli Meals'),
+            bottom: const TabBar(
+              tabs: const [
+                Tab(
+                  icon: Icon(Icons.category),
+                  text: 'Categories',
+                ),
+                Tab(
+                  icon: Icon(Icons.star),
+                  text: 'Favorites',
+                )
+              ],
+            ),
           ),
-        ),
-        body: TabBarView(children: [CategoriesScreen(), FavoritesScreen()]),
-      ),
+          body:
+              null //TabBarView(children: [CategoriesScreen(), FavoritesScreen()]),
+          ),
     );
   }
 }
